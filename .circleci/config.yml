@@ -3,7 +3,15 @@ version: 2.1
 orbs:
   maven: circleci/maven@0.0.12
 
+jobs:
+  build:
+    steps:
+      - run:
+          name: Perform Build
+          command: mvn install -DskipTests
+
 workflows:
   maven_test:
     jobs:
+      - build
       - maven/test # checkout, build, test, and upload test results
